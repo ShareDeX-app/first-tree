@@ -16,14 +16,24 @@ const Header = () => {
         <img src={logo} alt="ShareDeX Logo" width="40" style={{ marginRight: '1rem' }} />
         <span style={{ fontSize: '1.5rem', fontWeight: 600, color: '#00e6e6' }}>ShareDeX</span>
       </div>
-      <nav>
-        <Link to="/" style={{ color: '#ccc', marginRight: '1.5rem' }}>Home</Link>
-        <Link to="/booking" style={{ color: '#ccc', marginRight: '1.5rem' }}>Booking</Link>
-        <Link to="/admin" style={{ color: '#ccc', marginRight: '1.5rem' }}>Admin</Link>
-        <Link to="/login" style={{ color: '#ccc' }}>Login</Link>
+
+      <nav style={{ display: 'flex', gap: '1.5rem' }}>
+        <Link to="/" style={navLinkStyle}>Home</Link>
+        <Link to="/booking" style={navLinkStyle}>Booking</Link>
+        <Link to="/admin" style={navLinkStyle}>Admin</Link>
+        <Link to="/login" style={navLinkStyle}>Login</Link>
       </nav>
     </header>
   );
+};
+
+// Style for Navigation Buttons 
+const navLinkStyle: React.CSSProperties = {
+  color: '#ccc',
+  textDecoration: 'none',
+  fontWeight: 500,
+  fontSize: '1rem',
+  transition: 'color 0.2s',
 };
 
 export default Header;
