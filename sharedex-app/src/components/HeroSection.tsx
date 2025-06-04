@@ -1,44 +1,42 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import logo from '../assets/LogoDex.png';
+import { motion } from 'framer-motion';
 
 const HeroSection = () => {
   const navigate = useNavigate();
 
   return (
-    <section style={{
-      display: 'flex',
-      flexDirection: 'column',
-      alignItems: 'center',
-      justifyContent: 'center',
-      height: '80vh',
-      backgroundColor: '#0a0a0a',
-      color: '#f0f0f0',
-      textAlign: 'center',
-      padding: '2rem',
-    }}>
-      <img src={logo} alt="ShareDeX Logo" width="150" style={{ marginBottom: '1.5rem' }} />
-      <h1 style={{ fontSize: '2.5rem', marginBottom: '1rem' }}>
-        Smart Desk Booking for Modern Workplaces
-      </h1>
-      <p style={{ maxWidth: '600px', fontSize: '1.2rem', marginBottom: '2rem' }}>
-        ShareDeX helps teams reserve desks, manage space, and stay connected — whether you're remote, hybrid or on-site.
-      </p>
-      <button
-        onClick={() => navigate('/booking')}
-        style={{
-          backgroundColor: '#00e6e6',
-          border: 'none',
-          padding: '1rem 2rem',
-          fontSize: '1rem',
-          fontWeight: 600,
-          borderRadius: '8px',
-          color: '#000',
-          cursor: 'pointer',
-        }}
+    <section className="relative w-full h-[100vh] flex flex-col items-center justify-center text-white bg-gradient-to-br from-black via-gray-900 to-gray-800 overflow-hidden">
+
+      <motion.h1
+        className="text-4xl md:text-6xl font-extrabold text-center max-w-4xl z-10"
+        initial={{ opacity: 0, y: 30 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 1 }}
       >
-        Start Booking
-      </button>
+        Effortless Desk Booking <br className="hidden md:inline" /> for Modern Teams
+      </motion.h1>
+
+      <motion.p
+        className="mt-6 text-lg md:text-xl text-gray-300 text-center max-w-xl z-10"
+        initial={{ opacity: 0, y: 40 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 1, delay: 0.3 }}
+      >
+        ShareDeX empowers hybrid workplaces with intuitive, customizable desk reservations that fit every team.
+      </motion.p>
+
+      <motion.button
+        onClick={() => navigate('/booking')}
+        className="mt-10 px-8 py-3 bg-teal-500 text-black font-semibold rounded-xl hover:bg-teal-400 transition z-10"
+        initial={{ opacity: 0, y: 50 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 1, delay: 0.6 }}
+      >
+        Book Your DeX Now
+      </motion.button>
+
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-teal-500/10 via-transparent to-transparent z-0" />
     </section>
   );
 };

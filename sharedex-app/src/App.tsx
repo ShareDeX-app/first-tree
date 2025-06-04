@@ -1,7 +1,6 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 import Header from './layout/Header';
-import HeroSection from './components/HeroSection';
 import HomePage from './pages/HomePage';
 import BookingPage from './pages/BookingPage';
 import AdminPage from './pages/AdminPage';
@@ -14,7 +13,6 @@ function App() {
       <Routes>
         <Route path="/" element={
           <>
-            <HeroSection />
             <HomePage />
           </>
         } />

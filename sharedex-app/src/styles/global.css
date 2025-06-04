@@ -1,14 +1,32 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* 🌙 Основной стиль для светлой и тёмной тем */
 body {
-  margin: 0;
-  padding: 0;
-  background-color: #0a0a0a;
-  color: #f0f0f0;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  text-align: center;
+  @apply m-0 p-0 font-sans text-center bg-white text-black dark:bg-black dark:text-white;
 }
 
-h1 {
-  font-weight: 500;
-  font-size: 2rem;
+/* 🖋️ Заголовки */
+h1, h2, h3, h4, h5 {
+  font-weight: 600;
   margin-top: 1rem;
 }
+
+/* ✨ Анимация появления */
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fade-in 1s ease-out forwards;
+}
+
+/* 💫 Можно добавить ещё больше кастомных анимаций позже */

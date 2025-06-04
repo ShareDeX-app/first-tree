@@ -1,39 +1,51 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import logo from '../assets/LogoDex.png';
+import { motion } from 'framer-motion';
 
 const Header = () => {
-  return (
-    <header style={{
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'space-between',
-      padding: '1rem 2rem',
-      backgroundColor: '#111',
-      borderBottom: '1px solid #333',
-    }}>
-      <div style={{ display: 'flex', alignItems: 'center' }}>
-        <img src={logo} alt="ShareDeX Logo" width="40" style={{ marginRight: '1rem' }} />
-        <span style={{ fontSize: '1.5rem', fontWeight: 600, color: '#00e6e6' }}>ShareDeX</span>
-      </div>
+  const [darkMode, setDarkMode] = React.useState(false);
 
-      <nav style={{ display: 'flex', gap: '1.5rem' }}>
-        <Link to="/" style={navLinkStyle}>Home</Link>
-        <Link to="/booking" style={navLinkStyle}>Booking</Link>
-        <Link to="/admin" style={navLinkStyle}>Admin</Link>
-        <Link to="/login" style={navLinkStyle}>Login</Link>
-      </nav>
+  React.useEffect(() => {
+    if (darkMode) {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
+  }, [darkMode]);
+
+  return (
+    <header className="bg-white text-black dark:bg-black dark:text-white py-4 px-8 flex items-center justify-between shadow-md transition-colors">
+      <Link to="/" className="flex items-center gap-3">
+        <motion.img
+          src={logo}
+          alt="ShareDeX Logo"
+          className="h-10 w-auto"
+          whileHover={{ rotate: 5, scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+          transition={{ type: 'spring', stiffness: 300 }}
+        />
+      </Link>
+
+      <div className="flex items-center gap-6">
+        <nav className="flex gap-6">
+          <Link to="/" className="hover:text-teal-400 transition">Home</Link>
+          <Link to="/booking" className="hover:text-teal-400 transition">Booking</Link>
+          <Link to="/admin" className="hover:text-teal-400 transition">Admin</Link>
+          <Link to="/login" className="hover:text-teal-400 transition">Login</Link>
+        </nav>
+        <button
+          onClick={() => setDarkMode(!darkMode)}
+          className="ml-6 px-3 py-1 border rounded transition 
+                     border-black dark:border-white 
+                     hover:bg-black hover:text-white 
+                     dark:hover:bg-white dark:hover:text-black"
+        >
+          {darkMode ? '☀️ Light' : '🌙 Dark'}
+        </button>
+      </div>
     </header>
   );
-};
-
-// Style for Navigation Buttons 
-const navLinkStyle: React.CSSProperties = {
-  color: '#ccc',
-  textDecoration: 'none',
-  fontWeight: 500,
-  fontSize: '1rem',
-  transition: 'color 0.2s',
 };
 
 export default Header;

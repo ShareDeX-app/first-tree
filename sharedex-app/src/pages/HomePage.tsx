@@ -1,11 +1,19 @@
 import React from 'react';
+import HeroSection from '../components/HeroSection';
+import FeaturesSection from '../components/FeaturesSection';
+import TestimonialsSection from '../components/TestimonialsSection';
+import CTASection from '../components/CTASection';
+import Footer from '../components/Footer';
 
 const HomePage = () => {
   return (
-    <div style={{ color: '#eee', padding: '2rem' }}>
-      <h2>Welcome to ShareDeX</h2>
-      <p>Main page.</p>
-    </div>
+    <>
+      <HeroSection />
+      <FeaturesSection />
+      <TestimonialsSection />
+      <CTASection />
+      <Footer />
+    </>
   );
 };
 
