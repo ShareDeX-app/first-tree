@@ -1,3 +1,3 @@
 export function isAuthenticated(): boolean {
-  return !!localStorage.getItem('access_token');
+  return !!localStorage.getItem('token'); // или 'access_token' — в зависимости от твоей логики
 }
