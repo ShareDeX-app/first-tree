@@ -1,6 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import { loginUser } from '../services/auth';
+
 import logo1 from '../assets/logo1.png';
 import logo2 from '../assets/logo2.png';
 import logo3 from '../assets/logo3.png';
@@ -18,6 +20,7 @@ const LoginPage = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [errors, setErrors] = useState<{ email?: boolean; password?: boolean }>({});
+  const [serverError, setServerError] = useState('');
 
   const handleTyping = () => {
     if (typingTimer) clearTimeout(typingTimer);
@@ -27,7 +30,7 @@ const LoginPage = () => {
     setTypingTimer(newTimer);
   };
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     const newErrors: { email?: boolean; password?: boolean } = {};
@@ -40,10 +43,15 @@ const LoginPage = () => {
     }
 
     setErrors({});
-    console.log('🔐 Логинимся с:', { email, password });
+    setServerError('');
 
-    // TODO: Авторизация
-    // navigate('/dashboard');
+    const result = await loginUser(email, password);
+
+    if (result.success) {
+      navigate('/dashboard');
+    } else {
+      setServerError(result.message || 'Ошибка входа');
+    }
   };
 
   return (
@@ -84,6 +92,10 @@ const LoginPage = () => {
               errors.password ? 'ring-red-500' : 'focus:ring-teal-400'
             }`}
           />
+
+          {serverError && (
+            <p className="text-red-500 text-sm text-center -mt-2">{serverError}</p>
+          )}
 
           <button
             type="submit"

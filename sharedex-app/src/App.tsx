@@ -1,24 +1,29 @@
 import React from 'react';
-import { Routes, Route } from 'react-router-dom';
-import Header from './layout/Header';
-import HomePage from './pages/HomePage';
-import BookingPage from './pages/BookingPage';
-import AdminPage from './pages/AdminPage';
+import { Routes, Route, Navigate } from 'react-router-dom';
+
 import LoginPage from './pages/LoginPage';
+import Dashboard from './pages/Dashboard';
+import AdminPage from './pages/AdminPage';
+import { isAuthenticated } from './utils/auth';
 
 function App() {
   return (
     <>
-      <Header />
       <Routes>
-        <Route path="/" element={
-          <>
-            <HomePage />
-          </>
-        } />
-        <Route path="/booking" element={<BookingPage />} />
-        <Route path="/admin" element={<AdminPage />} />
         <Route path="/login" element={<LoginPage />} />
+        <Route
+          path="/dashboard"
+          element={
+            isAuthenticated() ? <Dashboard /> : <Navigate to="/login" />
+          }
+        />
+        <Route
+          path="/admin"
+          element={
+            isAuthenticated() ? <AdminPage /> : <Navigate to="/login" />
+          }
+        />
+        {/* добавь другие маршруты по желанию */}
       </Routes>
     </>
   );
