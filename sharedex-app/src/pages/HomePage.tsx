@@ -7,13 +7,13 @@ import Footer from '../components/Footer';
 
 const HomePage = () => {
   return (
-    <>
+    <div className="bg-white dark:bg-black text-black dark:text-white">
       <HeroSection />
       <FeaturesSection />
       <TestimonialsSection />
       <CTASection />
       <Footer />
-    </>
+    </div>
   );
 };
 
